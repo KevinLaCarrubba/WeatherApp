@@ -4,10 +4,11 @@ import { Autocomplete, InputAdornment, TextField } from '@mui/material'
 import { MdSearch } from 'react-icons/md'
 
 import { SearchContext } from '../../context/SearchContext'
+import { getCurrentWeather } from '../../api/api'
 import styles from './nav.module.scss'
 
 const Nav = () => {
-    const { setSearchValue } = useContext(SearchContext)
+    const { setSearchInfo } = useContext(SearchContext)
     const [value, setValue] = useState('')
 
     const inputText = useRef(null)
@@ -16,11 +17,15 @@ const Nav = () => {
         setValue(event.target.value)
     }
     const clickSearch = () => {
-        setSearchValue(inputText.current.value)
+        getCurrentWeather(inputText.current.value).then(response => {
+            setSearchInfo(response)
+        })
     }
     const hitEnter = event => {
         if (event.key === 'Enter') {
-            setSearchValue(value)
+            getCurrentWeather(inputText.current.value).then(response => {
+                setSearchInfo(response)
+            })
         }
     }
 

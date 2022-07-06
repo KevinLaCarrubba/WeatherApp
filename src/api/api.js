@@ -1,4 +1,5 @@
 import axios from 'axios'
+const APIkey = process.env.REACT_APP_APIkey
 
 export const getCurrentWeather = async location => {
     try {

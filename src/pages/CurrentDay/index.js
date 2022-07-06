@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { SearchContext } from '../../context/SearchContext'
 
 const CurrentDay = () => {
-    const { searchValue } = useContext(SearchContext)
-
-    return <div>{searchValue}</div>
+    const { searchInfo } = useContext(SearchContext)
+    console.log(searchInfo)
+    return <div>search incoming</div>
 }
 
 export default CurrentDay
