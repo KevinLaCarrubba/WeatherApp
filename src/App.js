@@ -2,7 +2,7 @@ import React from 'react'
 import SearchInfoProvider from './context/SearchContext'
 
 import Nav from './components/Nav'
-import CurrentDay from './pages/CurrentDay'
+import Content from './pages/Content'
 import Footer from './components/Footer'
 
 import './styles/global.scss'
@@ -13,7 +13,7 @@ const App = () => {
             <SearchInfoProvider>
                 <Nav />
                 <div>
-                    <CurrentDay />
+                    <Content />
                 </div>
                 <Footer />
             </SearchInfoProvider>

@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    justify-content: center;
+    .weatherBox {
+        min-height: 20rem;
+        width: 500px;
+        padding: 2rem;
+
+        .datetimebox {
+            .location {
+                color: var(--blueOne);
+                font-weight: 600;
+            }
+            .dateANDtime {
+                color: var(--blueOne);
+                font-weight: 500;
+            }
+        }
+        .iconAndTempBox {
+            width: 100%;
+            display: flex;
+            .weatherIcon {
+                width: 49%;
+                svg:nth-of-type(1) {
+                    width: 10rem;
+                    height: 9rem;
+                }
+            }
+            .tempBox {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                .temp {
+                    display: flex;
+                    justify-content: center;
+                    font-size: 6rem;
+                    margin: 0;
+                    color: var(--blueOne);
+                    font-weight: 200;
+                    span {
+                        font-size: 5rem;
+                        color: var(--blueOne);
+                    }
+                }
+                .currentCondition {
+                    margin: 0;
+                    text-align: center;
+                    font-size: 1.4rem;
+                    color: var(--blueOne);
+                }
+                .highANDlow {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-evenly;
+                    flex-direction: row;
+                    p {
+                        margin: 0;
+                        font-size: 1.3rem;
+                        color: var(--blueOne);
+                    }
+                }
+            }
+        }
+    }
+}

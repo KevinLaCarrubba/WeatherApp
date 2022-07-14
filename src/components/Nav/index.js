@@ -4,41 +4,65 @@ import { Autocomplete, InputAdornment, TextField } from '@mui/material'
 import { MdSearch } from 'react-icons/md'
 
 import { SearchContext } from '../../context/SearchContext'
-import { getCurrentWeather } from '../../api/api'
+import { getWeather } from '../../api/api'
 import styles from './nav.module.scss'
+import { AllWeather } from '../SVGIcons/SvgIcons'
 
 const Nav = () => {
     const { setSearchInfo } = useContext(SearchContext)
     const [value, setValue] = useState('')
+    const [recentSearched, setRecentSearched] = useState(
+        JSON.parse(localStorage.getItem('searched') || '[]')
+    )
 
     const inputText = useRef(null)
+
+    const populateLocalStorage = search => {
+        recentSearched.push({ search: search })
+        localStorage.setItem('searched', JSON.stringify(recentSearched))
+    }
 
     const changeSearch = event => {
         setValue(event.target.value)
     }
     const clickSearch = () => {
-        getCurrentWeather(inputText.current.value).then(response => {
-            setSearchInfo(response)
-        })
+        getWeather(inputText.current.value)
+            .then(response => {
+                setSearchInfo(response)
+            })
+            .catch(error => {
+                console.error(error.message)
+            })
+        populateLocalStorage(inputText.current.value)
     }
     const hitEnter = event => {
         if (event.key === 'Enter') {
-            getCurrentWeather(inputText.current.value).then(response => {
-                setSearchInfo(response)
-            })
+            getWeather(inputText.current.value)
+                .then(response => {
+                    setSearchInfo(response)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+            populateLocalStorage(inputText.current.value)
         }
     }
-
+    const clearLocalStorage = () => {
+        localStorage.clear()
+        setRecentSearched([])
+    }
     return (
         <nav>
-            <div>Logo</div>
+            <div>
+                <AllWeather />
+            </div>
             <div className={styles.search}>
                 <Autocomplete
                     className={styles.searchField}
                     freeSolo
                     id="free-solo-2-demo"
                     disableClearable
-                    options={recentSearched?.map(option => option.title)}
+                    options={recentSearched?.map(option => option.search)}
                     renderInput={params => (
                         <TextField
                             {...params}
@@ -63,11 +87,14 @@ const Nav = () => {
                         />
                     )}
                 />
+                <small
+                    className={styles.searchClear}
+                    onClick={clearLocalStorage}>
+                    Clear History
+                </small>
             </div>
         </nav>
     )
 }
-
-const recentSearched = [{ title: 'Hello' }, { title: 'goodbye' }]
 
 export default Nav
