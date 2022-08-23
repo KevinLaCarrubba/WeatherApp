@@ -3,8 +3,9 @@
     flex-direction: column;
     justify-content: center;
     .infoContainer {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         column-gap: 2rem;
         .cardContainer {
             padding: 1rem;

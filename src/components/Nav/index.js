@@ -16,15 +16,22 @@ const Nav = () => {
     )
 
     const inputText = useRef(null)
-
+    //Fucntion to populate the last search into local storage for search auto complete
     const populateLocalStorage = search => {
-        recentSearched.push({ search: search })
-        localStorage.setItem('searched', JSON.stringify(recentSearched))
+        //check if search value exists
+        const checkSearch = recentSearched.some(data => data.search === search)
+        //add last search value to array if it doesnt exist
+        if (checkSearch === false) {
+            recentSearched.push({ search: search })
+            localStorage.setItem('searched', JSON.stringify(recentSearched))
+        }
     }
 
     const changeSearch = event => {
         setValue(event.target.value)
     }
+
+    //function to search value when icon is clicked
     const clickSearch = () => {
         getWeather(inputText.current.value)
             .then(response => {
@@ -35,6 +42,8 @@ const Nav = () => {
             })
         populateLocalStorage(inputText.current.value)
     }
+
+    //function to search value when enter button is hit
     const hitEnter = event => {
         if (event.key === 'Enter') {
             getWeather(inputText.current.value)
@@ -47,6 +56,7 @@ const Nav = () => {
             populateLocalStorage(inputText.current.value)
         }
     }
+
     const clearLocalStorage = () => {
         localStorage.clear()
         setRecentSearched([])

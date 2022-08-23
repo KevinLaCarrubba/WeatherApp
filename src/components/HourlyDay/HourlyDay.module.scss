@@ -4,7 +4,7 @@
     padding: 1rem;
     .infoContainer {
         display: grid;
-        grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+        grid-template-columns: repeat(12, minmax(80px, 1fr));
         row-gap: 1rem;
         column-gap: 0.5rem;
         .info {
@@ -32,6 +32,13 @@
             .temp {
                 color: var(--blueOne);
                 font-size: 1.2rem;
+            }
+            .rain {
+                display: flex;
+                align-items: center;
+                .waterDrop {
+                    color: var(--waterDrop);
+                }
             }
         }
     }
