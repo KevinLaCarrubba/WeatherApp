@@ -9,8 +9,8 @@ import { GiWaterDrop } from 'react-icons/gi'
 const HourlyDay = () => {
     const { searchInfo } = useContext(SearchContext)
     const date = new Date()
-    let currentHour = date.getHours()
-    console.log(currentHour)
+    const currentHour = date.getHours()
+
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer}>
@@ -22,9 +22,6 @@ const HourlyDay = () => {
                                 <div className={styles.time}>
                                     {format(new Date(info.time), 'haaa')}
                                 </div>
-                                {/* <div className={styles.date}>
-                                        {format(new Date(info.time), 'M/dd')}
-                                    </div> */}
                                 <div className={styles.logo}>
                                     {renderIcon(
                                         info.condition.code,
@@ -59,12 +56,6 @@ const HourlyDay = () => {
                                                 'haaa'
                                             )}
                                         </div>
-                                        {/* <div className={styles.date}>
-                                                {format(
-                                                    new Date(info.time),
-                                                    'M/dd'
-                                                )}
-                                            </div> */}
                                         <div className={styles.logo}>
                                             {renderIcon(
                                                 info.condition.code,

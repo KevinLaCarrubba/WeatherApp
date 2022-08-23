@@ -100,8 +100,8 @@ const Nav = () => {
         [setSearchInfo]
     )
     useEffect(() => {
-        getLocation(currentLocation)
-    }, [getLocation, currentLocation])
+        getLocation('07010')
+    }, [getLocation])
     return (
         <nav>
             <div>
