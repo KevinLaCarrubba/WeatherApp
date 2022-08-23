@@ -2,12 +2,18 @@ import React, { useContext } from 'react'
 import { SearchContext } from '../../context/SearchContext'
 import { renderIcon } from '../../Utils/renderIcon'
 
-import { format, parseJSON } from 'date-fns'
+import { format, parse } from 'date-fns'
 import styles from './WeeklyDay.module.scss'
 
 const WeeklyDay = () => {
     const { searchInfo } = useContext(SearchContext)
-    console.log(searchInfo)
+    console.log('hello kevin', searchInfo)
+    const dateFormat = date => {
+        const parseDate = parse(date, 'yyyy-MM-dd', new Date())
+        const formatDate = format(new Date(parseDate), 'M/dd')
+        return formatDate
+    }
+
     return (
         <div className={styles.container}>
             <h5>Weekly Forecast</h5>
@@ -16,7 +22,7 @@ const WeeklyDay = () => {
                     return (
                         <div className={styles.cardContainer} key={index}>
                             <div className={styles.date}>
-                                {format(new Date(data.date), 'M/dd')}
+                                {dateFormat(data.date)}
                             </div>
                             <div className={styles.icon}>
                                 {renderIcon(data.day.condition.code, 1)}
