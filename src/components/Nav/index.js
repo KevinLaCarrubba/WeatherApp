@@ -7,10 +7,13 @@ import { SearchContext } from '../../context/SearchContext'
 import { getWeather } from '../../api/api'
 import styles from './nav.module.scss'
 import { AllWeather } from '../SVGIcons/SvgIcons'
+import { useCallback } from 'react'
+import { useEffect } from 'react'
 
 const Nav = () => {
     const { setSearchInfo } = useContext(SearchContext)
     const [value, setValue] = useState('')
+    const [currentLocation, setCurrentLocation] = useState(null)
     const [recentSearched, setRecentSearched] = useState(
         JSON.parse(localStorage.getItem('searched') || '[]')
     )
@@ -61,6 +64,44 @@ const Nav = () => {
         localStorage.clear()
         setRecentSearched([])
     }
+
+    const getCurrentLocation = () => {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        }
+
+        function success(pos) {
+            const crd = pos.coords
+            setCurrentLocation(`${crd.latitude},${crd.longitude}`)
+        }
+
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`)
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options)
+    }
+
+    if (currentLocation === null) {
+        getCurrentLocation()
+    }
+    const getLocation = useCallback(
+        currentLocation => {
+            getWeather(currentLocation)
+                .then(response => {
+                    setSearchInfo(response)
+                })
+                .catch(error => {
+                    console.error(error.message)
+                })
+        },
+        [setSearchInfo]
+    )
+    useEffect(() => {
+        getLocation(currentLocation)
+    }, [getLocation, currentLocation])
     return (
         <nav>
             <div>

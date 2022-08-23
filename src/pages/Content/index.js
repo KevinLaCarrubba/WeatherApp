@@ -16,12 +16,6 @@ const Content = () => {
                 <WeeklyDay />
             </div>
         )
-    } else {
-        return (
-            <div className={styles.welcomeContainer}>
-                <h6>Hello</h6>
-            </div>
-        )
     }
 }
 

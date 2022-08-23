@@ -9,7 +9,6 @@ export const getWeather = async location => {
         )
         return result.data
     } catch (error) {
-        console.log(error)
-        console.error(error.message)
+        console.log(error.response.data.error.message)
     }
 }

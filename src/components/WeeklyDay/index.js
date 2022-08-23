@@ -7,7 +7,7 @@ import styles from './WeeklyDay.module.scss'
 
 const WeeklyDay = () => {
     const { searchInfo } = useContext(SearchContext)
-    console.log('hello kevin', searchInfo)
+
     const dateFormat = date => {
         const parseDate = parse(date, 'yyyy-MM-dd', new Date())
         const formatDate = format(new Date(parseDate), 'M/dd')
