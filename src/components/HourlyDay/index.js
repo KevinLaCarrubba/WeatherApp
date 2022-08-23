@@ -10,6 +10,7 @@ const HourlyDay = () => {
     const { searchInfo } = useContext(SearchContext)
     const date = new Date()
     let currentHour = date.getHours()
+    console.log(currentHour)
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer}>
