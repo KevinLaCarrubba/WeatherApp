@@ -57,45 +57,6 @@ const HourlyDay = () => {
                         </div>
                     )
                 })}
-                {/* {currentHour !== 0 && (
-                    <>
-                        {searchInfo?.forecast.forecastday[1]?.hour
-                            .slice(0, currentHour)
-                            .map(info => {
-                                return (
-                                    <div
-                                        className={styles.info}
-                                        key={info.time_epoch}>
-                                        <div className={styles.time}>
-                                            {format(
-                                                new Date(info.time),
-                                                'haaa'
-                                            )}
-                                        </div>
-                                        <div className={styles.logo}>
-                                            {renderIcon(
-                                                info.condition.code,
-                                                info.is_day
-                                            )}
-                                        </div>
-                                        <div className={styles.temp}>
-                                            {Math.round(info.temp_f)}°F
-                                        </div>
-
-                                        <div className={styles.condition}>
-                                            {info.condition.text}
-                                        </div>
-                                        <div className={styles.rain}>
-                                            <GiWaterDrop
-                                                className={styles.waterDrop}
-                                            />
-                                            {info.chance_of_rain}%
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                    </>
-                )} */}
             </div>
         </div>
     )
