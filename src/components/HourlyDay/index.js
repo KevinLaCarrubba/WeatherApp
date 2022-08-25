@@ -31,7 +31,7 @@ const HourlyDay = () => {
     useEffect(() => {
         createHoursArray()
     }, [createHoursArray])
-    console.log(hourlyArray)
+
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer}>
