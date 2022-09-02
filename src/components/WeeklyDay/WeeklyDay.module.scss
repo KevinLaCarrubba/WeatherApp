@@ -48,3 +48,15 @@
         }
     }
 }
+
+@media only screen and (max-width: 940px) {
+    .container {
+        .infoContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            column-gap: 2rem;
+            justify-items: center;
+            justify-content: center;
+        }
+    }
+}

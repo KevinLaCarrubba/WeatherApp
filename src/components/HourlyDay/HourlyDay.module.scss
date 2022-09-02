@@ -43,3 +43,11 @@
         }
     }
 }
+
+@media only screen and (max-width: 940px) {
+    .container {
+        .infoContainer {
+            grid-template-columns: repeat(3, minmax(80px, 1fr));
+        }
+    }
+}

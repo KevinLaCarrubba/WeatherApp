@@ -19,6 +19,7 @@
         .iconAndTempBox {
             width: 100%;
             display: flex;
+
             .weatherIcon {
                 width: 49%;
                 svg:nth-of-type(1) {
@@ -60,6 +61,20 @@
                         color: var(--blueOne);
                     }
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 940) {
+    .container {
+        .weatherBox {
+            .iconAndTempBox {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-content: center;
+                align-items: center;
             }
         }
     }
