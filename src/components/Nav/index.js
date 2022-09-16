@@ -65,43 +65,43 @@ const Nav = () => {
         setRecentSearched([])
     }
 
-    const getCurrentLocation = () => {
-        const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        }
+    // const getCurrentLocation = () => {
+    //     const options = {
+    //         enableHighAccuracy: true,
+    //         timeout: 5000,
+    //         maximumAge: 0
+    //     }
 
-        function success(pos) {
-            const crd = pos.coords
-            setCurrentLocation(`${crd.latitude},${crd.longitude}`)
-        }
+    //     function success(pos) {
+    //         const crd = pos.coords
+    //         setCurrentLocation(`${crd.latitude},${crd.longitude}`)
+    //     }
 
-        function error(err) {
-            console.warn(`ERROR(${err.code}): ${err.message}`)
-        }
+    //     function error(err) {
+    //         console.warn(`ERROR(${err.code}): ${err.message}`)
+    //     }
 
-        navigator.geolocation.getCurrentPosition(success, error, options)
-    }
+    //     navigator.geolocation.getCurrentPosition(success, error, options)
+    // }
 
-    if (currentLocation === null) {
-        getCurrentLocation()
-    }
-    const getLocation = useCallback(
-        currentLocation => {
-            getWeather(currentLocation)
-                .then(response => {
-                    setSearchInfo(response)
-                })
-                .catch(error => {
-                    console.error(error.message)
-                })
-        },
-        [setSearchInfo]
-    )
-    useEffect(() => {
-        getLocation('07010')
-    }, [getLocation])
+    // if (currentLocation === null) {
+    //     getCurrentLocation()
+    // }
+    // const getLocation = useCallback(
+    //     currentLocation => {
+    //         getWeather(currentLocation)
+    //             .then(response => {
+    //                 setSearchInfo(response)
+    //             })
+    //             .catch(error => {
+    //                 console.error(error.message)
+    //             })
+    //     },
+    //     [setSearchInfo]
+    // )
+    // useEffect(() => {
+    //     getLocation('07010')
+    // }, [getLocation])
     return (
         <nav>
             <div>
